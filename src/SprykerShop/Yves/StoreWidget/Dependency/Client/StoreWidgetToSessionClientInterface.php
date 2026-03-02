@@ -17,11 +17,5 @@ interface StoreWidgetToSessionClientInterface
      */
     public function get(string $name, mixed $default = null): mixed;
 
-    /**
-     * @param string $name
-     * @param mixed $value
-     *
-     * @return void
-     */
     public function set(string $name, mixed $value): void;
 }

@@ -104,25 +104,16 @@ class StoreSwitcherWidget extends AbstractWidget
         $this->addStoreUrlsParam();
     }
 
-    /**
-     * @return string
-     */
     public static function getName(): string
     {
         return 'StoreSwitcher';
     }
 
-    /**
-     * @return string
-     */
     public static function getTemplate(): string
     {
         return '@StoreWidget/views/switcher/switcher.twig';
     }
 
-    /**
-     * @return void
-     */
     protected function addCurrentStoreParameter(): void
     {
         $this->addParameter(
@@ -131,9 +122,6 @@ class StoreSwitcherWidget extends AbstractWidget
         );
     }
 
-    /**
-     * @return void
-     */
     protected function addStoreNamesParameter(): void
     {
         $this->addParameter(
@@ -142,9 +130,6 @@ class StoreSwitcherWidget extends AbstractWidget
         );
     }
 
-    /**
-     * @return void
-     */
     protected function addStoreUrlsParam(): void
     {
         if ($this->getConfig()->isStoreRoutingEnabled() === false) {
@@ -180,9 +165,6 @@ class StoreSwitcherWidget extends AbstractWidget
         return $urls;
     }
 
-    /**
-     * @return string
-     */
     protected function getCurrentRoute(): string
     {
         $request = $this->getGlobalContainer()->get(static::SERVICE_REQUEST_STACK)->getCurrentRequest();
@@ -207,11 +189,6 @@ class StoreSwitcherWidget extends AbstractWidget
         }
     }
 
-    /**
-     * @param string|null $storeName
-     *
-     * @return void
-     */
     protected function setRouterStoreContext(?string $storeName = null): void
     {
         $routers = $this->getGlobalContainer()->get(static::SERVICE_ROUTERS);
@@ -220,12 +197,6 @@ class StoreSwitcherWidget extends AbstractWidget
         $routers->setContext($context);
     }
 
-    /**
-     * @param string $route
-     * @param string|null $storeName
-     *
-     * @return string
-     */
     protected function setRouterLocaleContext(string $route, ?string $storeName = null): string
     {
         $routers = $this->getGlobalContainer()->get(static::SERVICE_ROUTERS);
@@ -254,12 +225,6 @@ class StoreSwitcherWidget extends AbstractWidget
         return $this->updateRouteWithLocale($route, $store->getDefaultLocaleIsoCodeOrFail());
     }
 
-    /**
-     * @param string $route
-     * @param string $locale
-     *
-     * @return string
-     */
     protected function updateRouteWithLocale(string $route, string $locale): string
     {
         $urlParts = explode('/', ltrim($route, '/'), 2);
@@ -278,11 +243,6 @@ class StoreSwitcherWidget extends AbstractWidget
         return $route;
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return string
-     */
     protected function convertLocaleToFullFormat(string $locale): string
     {
         return str_replace(static::STR_SEARCH, static::STR_REPLACE, strtolower($locale));

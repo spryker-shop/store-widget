@@ -33,12 +33,6 @@ class StoreWidgetToSessionClientBridge implements StoreWidgetToSessionClientInte
         return $this->sessionClient->get($name, $default);
     }
 
-    /**
-     * @param string $name
-     * @param mixed $value
-     *
-     * @return void
-     */
     public function set(string $name, mixed $value): void
     {
         $this->sessionClient->set($name, $value);

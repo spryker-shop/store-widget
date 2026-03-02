@@ -51,11 +51,6 @@ class StoreApplicationPlugin extends AbstractPlugin implements ApplicationPlugin
         return $container;
     }
 
-    /**
-     * @param \Spryker\Service\Container\ContainerInterface $container
-     *
-     * @return \Spryker\Service\Container\ContainerInterface
-     */
     protected function addStore(ContainerInterface $container): ContainerInterface
     {
         $container->set(static::STORE, function (ContainerInterface $container) {
@@ -69,11 +64,6 @@ class StoreApplicationPlugin extends AbstractPlugin implements ApplicationPlugin
         return $container;
     }
 
-    /**
-     * @param \Spryker\Service\Container\ContainerInterface $container
-     *
-     * @return \Spryker\Service\Container\ContainerInterface
-     */
     protected function addStoreTimezone(ContainerInterface $container): ContainerInterface
     {
         $container->set(static::SERVICE_TIMEZONE, function (ContainerInterface $container) {
@@ -122,9 +112,6 @@ class StoreApplicationPlugin extends AbstractPlugin implements ApplicationPlugin
         return $defaultStoreName;
     }
 
-    /**
-     * @return string|null
-     */
     protected function getStoreRequestUrlParameter(): ?string
     {
         $requestStack = $this->getFactory()->getRequestStack();
@@ -146,11 +133,6 @@ class StoreApplicationPlugin extends AbstractPlugin implements ApplicationPlugin
         return $this->extractStoreCode($currentRequest->getRequestUri());
     }
 
-    /**
-     * @param string $requestUri
-     *
-     * @return string|null
-     */
     protected function extractStoreCode(string $requestUri): ?string
     {
         $urlPath = (string)parse_url(trim($requestUri, '/'), PHP_URL_PATH);

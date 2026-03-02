@@ -16,10 +16,5 @@ interface StoreWidgetToStoreStorageClientInterface
      */
     public function getStoreNames(): array;
 
-    /**
-     * @param string $name
-     *
-     * @return \Generated\Shared\Transfer\StoreStorageTransfer|null
-     */
     public function findStoreByName(string $name): ?StoreStorageTransfer;
 }
