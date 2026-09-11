@@ -34,6 +34,8 @@ class StoreApplicationPlugin extends AbstractPlugin implements ApplicationPlugin
      */
     protected const SERVICE_TIMEZONE = 'SERVICE_TIMEZONE';
 
+    protected static ?string $resolvedStoreName = null;
+
     /**
      * {@inheritDoc}
      *
@@ -77,14 +79,21 @@ class StoreApplicationPlugin extends AbstractPlugin implements ApplicationPlugin
         return $container;
     }
 
+    protected function resolveStoreName(ContainerInterface $container): string
+    {
+        if (static::$resolvedStoreName === null) {
+            static::$resolvedStoreName = $this->loadStoreName();
+        }
+
+        return static::$resolvedStoreName;
+    }
+
     /**
-     * @param \Spryker\Service\Container\ContainerInterface $container
-     *
      * @throws \Exception
      *
      * @return string
      */
-    protected function resolveStoreName(ContainerInterface $container): string
+    protected function loadStoreName(): string
     {
         $storeName = $this->getStoreRequestUrlParameter();
         $storeNames = $this->getFactory()->getStoreStorageClient()->getStoreNames();
